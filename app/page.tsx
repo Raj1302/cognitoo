@@ -79,7 +79,6 @@ function Card({
   icon, 
   ctaText, 
   href, 
-  color, 
   tags,
   showClients = false,
   showCommunity = false,
@@ -87,19 +86,55 @@ function Card({
   openForProjects = false
 }: CardProps) {
   return (
-    <div className="flex-1 relative group md:min-h-full">
-      <Link href={href} className={`block h-full ${isComingSoon ? 'pointer-events-none' : ''}`}>
-        <div className="relative h-full flex flex-col items-center justify-center p-4 sm:p-6 z-10">
+    <div className="flex-1 relative group">
+      <Link href={href} className={`block ${isComingSoon ? 'cursor-not-allowed' : ''}`}>
+        <div className="relative h-full flex flex-col items-center justify-center p-2 sm:p-6 z-10">
           <div className="w-full max-w-sm">
-            <div className="relative backdrop-blur-xl bg-white/80 border border-gray-200/80 p-4 sm:p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:bg-white/90">
-              {isComingSoon && <ComingSoonOverlay />}
-              {openForProjects && <OpenForProjectsBadge />}
+            <div className="relative backdrop-blur-xl bg-white/80 border border-gray-200/80 p-4 sm:p-8 rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:bg-white/90 group-hover:-translate-y-1">
+              {isComingSoon && (
+                <>
+                  <div className="absolute inset-0 backdrop-blur-[1px] bg-white/40 rounded-2xl z-10" />
+                  <div className="absolute -top-3 right-0 sm:-right-3 z-20">
+                    <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full border border-purple-200 bg-purple-50/50 backdrop-blur-xl shadow-sm">
+                      <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" />
+                      <span className="text-[10px] sm:text-[11px] font-medium text-purple-900 tracking-wider uppercase">
+                        Coming Soon
+                      </span>
+                      <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" />
+                    </div>
+                  </div>
+                </>
+              )}
               
-              <div className={`relative ${isComingSoon ? 'opacity-40' : ''}`}>
-                <CardHeader title={title} icon={icon} color={color} />
-                <p className="text-[15px] text-gray-600 mb-5 sm:mb-6 leading-relaxed">
-                  {description}
-                </p>
+              {openForProjects && (
+                <div className="absolute -top-3 right-0 sm:-right-3 z-20">
+                  <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full border border-purple-200 bg-purple-50/50 backdrop-blur-xl shadow-sm">
+                    <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" />
+                    <span className="text-[10px] sm:text-[11px] font-medium text-purple-900 tracking-wider uppercase">
+                      Open for Projects
+                    </span>
+                    <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" />
+                  </div>
+                </div>
+              )}
+              
+              <div className={`${isComingSoon ? 'opacity-50' : ''}`}>
+                {/* Icon and Title Section */}
+                <div className="flex items-start gap-3 sm:gap-5 mb-6 sm:mb-8">
+                  <div className="text-purple-600 p-3 sm:p-4 bg-purple-500/5 rounded-xl shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[10deg]">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8">
+                      {icon}
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                      {title}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                      {description}
+                    </p>
+                  </div>
+                </div>
 
                 {showClients && (
                   <AvatarGroup 
@@ -115,91 +150,42 @@ function Card({
                   />
                 )}
 
-                <CardCTA text={ctaText} color={color} />
+                {/* Features Section */}
+                <div className="space-y-3 sm:space-y-4 mt-6 sm:mt-8">
+                  <h3 className="text-[10px] sm:text-[11px] font-semibold text-gray-400 tracking-wider uppercase">
+                    {isComingSoon ? 'PLANNED FEATURES' : 'KEY FEATURES'}
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {tags.map((tag) => (
+                      <span 
+                        key={tag} 
+                        className="px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-[11px] font-medium text-gray-600 backdrop-blur-md bg-white/80 rounded-full border border-gray-200/80 transition-colors duration-300 hover:text-purple-600 hover:border-purple-200"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Learn More Link */}
+                <div className="mt-6 sm:mt-8 flex items-center gap-2 text-purple-600 group/link">
+                  <span className="text-[10px] sm:text-[11px] font-medium tracking-wider uppercase">
+                    {ctaText}
+                  </span>
+                  <svg 
+                    className="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover/link:translate-x-1" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
               </div>
             </div>
-            <CardTags tags={tags} isComingSoon={isComingSoon} />
           </div>
         </div>
       </Link>
-    </div>
-  );
-}
-
-function ComingSoonOverlay() {
-  return (
-    <>
-      <div className="absolute inset-0 backdrop-blur-[1px] bg-white/40 rounded-xl z-10" />
-      <div className="absolute inset-0 flex items-center justify-center z-20">
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-lg" />
-          <div className="relative px-4 py-1.5 text-[11px] font-medium text-gray-900 bg-white/90 rounded-full border border-purple-500/20 uppercase backdrop-blur-xl">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
-              Coming Soon
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-function OpenForProjectsBadge() {
-  return (
-    <div className="absolute -top-3 -right-2 z-20">
-      <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full blur-lg" />
-        <div className="relative px-4 py-1.5 text-[11px] font-medium text-gray-900 bg-white/90 rounded-full border border-emerald-500/20 uppercase backdrop-blur-xl">
-          <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Open for Projects
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CardHeader({ title, icon, color }: { title: string; icon: ReactNode; color: "blue" | "purple" }) {
-  return (
-    <div className="mb-4 sm:mb-5 flex items-center gap-4">
-      <div className={`w-8 h-8 sm:w-10 sm:h-10 ${
-        color === 'blue' ? 'text-blue-600' : 'text-purple-600'
-      } shrink-0`}>{icon}</div>
-      <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
-        {title}
-      </h2>
-    </div>
-  );
-}
-
-function CardCTA({ text, color }: { text: string; color: "blue" | "purple" }) {
-  return (
-    <div className={`inline-flex items-center ${
-      color === 'blue' ? 'text-blue-600 group-hover:text-blue-700' : 'text-purple-600 group-hover:text-purple-700'
-    } transition-colors`}>
-      <span className="text-[11px] font-medium mr-2">{text}</span>
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-      </svg>
-    </div>
-  );
-}
-
-function CardTags({ tags, isComingSoon }: { tags: readonly string[]; isComingSoon: boolean }) {
-  return (
-    <div className={`flex flex-wrap gap-2 mt-4 justify-center ${isComingSoon ? 'opacity-40 pointer-events-none' : ''}`}>
-      {tags.map((tag) => (
-        <span 
-          key={tag} 
-          className="px-3 py-1 text-[11px] font-medium text-gray-600 backdrop-blur-md bg-white/80 rounded-full border border-gray-200/80"
-        >
-          {tag}
-        </span>
-      ))}
     </div>
   );
 }

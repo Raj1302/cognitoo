@@ -3,14 +3,15 @@ import { Badge } from "../Badge";
 type StatsItemProps = {
   value: string;
   label: string;
-  color: "blue" | "purple";
 }
 
-function StatsItem({ value, label, color }: StatsItemProps) {
+function StatsItem({ value, label }: StatsItemProps) {
   return (
-    <div className="text-center p-4 rounded-xl border border-gray-200/80 bg-white/60 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
-      <div className={`text-2xl font-bold text-${color}-600 mb-1`}>{value}</div>
-      <div className="text-[11px] font-medium text-gray-600 uppercase">
+    <div className="text-center p-6 rounded-2xl border border-gray-200/80 bg-white/60 backdrop-blur-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 group">
+      <div className="text-3xl font-bold text-purple-600 mb-2 group-hover:scale-110 transition-transform duration-500">
+        {value}
+      </div>
+      <div className="text-[11px] font-medium text-gray-500 tracking-wider uppercase">
         {label}
       </div>
     </div>
@@ -23,44 +24,29 @@ export function SolutionsHeader() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center">
           <Badge>Our Solutions</Badge>
-          <div className="mt-6 mb-6">
-            <h1 className="text-[2.5rem] font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent inline-block">
-              Transform Your Business
+          <div className="mt-8 mb-8">
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              Transform Your Business with
+              <span className="block mt-2 text-purple-600">
+                Modern Solutions
+              </span>
             </h1>
-          </div>
-          <div className="max-w-2xl mx-auto mb-16">
-            <p className="text-base text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
               Discover our comprehensive suite of enterprise solutions designed to elevate your business. 
               From web development to school management, we've got you covered.
             </p>
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            <StatsItem 
-              value="3+" 
-              label="Active Solutions" 
-              color="blue" 
-            />
-            <StatsItem 
-              value="24/7" 
-              label="Expert Support" 
-              color="purple" 
-            />
-            <StatsItem 
-              value="100%" 
-              label="Client Satisfaction" 
-              color="blue" 
-            />
-            <StatsItem 
-              value="3+" 
-              label="Coming Soon" 
-              color="purple" 
-            />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-16 mb-20">
+            <StatsItem value="3+" label="Active Solutions" />
+            <StatsItem value="24/7" label="Expert Support" />
+            <StatsItem value="100%" label="Client Satisfaction" />
+            <StatsItem value="3+" label="Coming Soon" />
           </div>
 
-          {/* Additional Features */}
-          <div className="flex flex-wrap justify-center gap-3 mt-12">
+          {/* Features Pills */}
+          <div className="flex flex-wrap justify-center gap-3">
             {[
               "Custom Development",
               "Cloud Integration",
@@ -70,12 +56,16 @@ export function SolutionsHeader() {
             ].map((feature) => (
               <span 
                 key={feature}
-                className="px-4 py-1.5 text-[11px] font-medium text-gray-600 bg-white/60 rounded-full border border-gray-200/80 backdrop-blur-sm"
+                className="px-5 py-2 text-[11px] font-medium text-gray-600 bg-white/60 rounded-full border border-gray-200/80 backdrop-blur-sm hover:text-purple-600 hover:border-purple-200 transition-colors duration-300"
               >
                 {feature}
               </span>
             ))}
           </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute top-1/2 left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
         </div>
       </div>
     </div>

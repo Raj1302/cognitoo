@@ -1,3 +1,5 @@
+import { Badge } from "../Badge";
+
 const serviceOptions = [
   { value: "", label: "Select a Service" },
   { value: "web-development", label: "Web Development" },
@@ -8,14 +10,21 @@ const serviceOptions = [
 
 export function ContactForm() {
   return (
-    <div className="backdrop-blur-xl bg-white/80 border border-gray-200/80 p-8 rounded-xl shadow-lg">
+    <div className="backdrop-blur-xl bg-white/80 border border-gray-200/80 p-8 rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl">
+      <div className="mb-8">
+        <Badge>Contact Form</Badge>
+        <h2 className="text-xl font-bold text-gray-900 mt-4">
+          Send us a Message
+        </h2>
+      </div>
+
       <form className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
             <input
               type="text"
-              className="w-full bg-white/60 border border-gray-200/80 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-white/60 border border-gray-200/80 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-purple-500 transition-all duration-300"
               placeholder="John"
             />
           </div>
@@ -23,7 +32,7 @@ export function ContactForm() {
             <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
             <input
               type="text"
-              className="w-full bg-white/60 border border-gray-200/80 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-white/60 border border-gray-200/80 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-purple-500 transition-all duration-300"
               placeholder="Doe"
             />
           </div>
@@ -33,7 +42,7 @@ export function ContactForm() {
           <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
           <input
             type="email"
-            className="w-full bg-white/60 border border-gray-200/80 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-white/60 border border-gray-200/80 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-purple-500 transition-all duration-300"
             placeholder="john@example.com"
           />
         </div>
@@ -44,7 +53,7 @@ export function ContactForm() {
           </label>
           <div className="relative">
             <select 
-              className="w-full bg-white/60 border border-gray-200/80 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-blue-500 transition-colors appearance-none"
+              className="w-full bg-white/60 border border-gray-200/80 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-purple-500 transition-all duration-300 appearance-none"
             >
               {serviceOptions.map((option) => (
                 <option 
@@ -68,14 +77,14 @@ export function ContactForm() {
           <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
           <textarea
             rows={4}
-            className="w-full bg-white/60 border border-gray-200/80 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+            className="w-full bg-white/60 border border-gray-200/80 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-purple-500 transition-all duration-300 resize-none"
             placeholder="Tell us about your project..."
           />
         </div>
 
         <button
           type="submit"
-          className="w-full px-8 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium hover:opacity-90 transition-opacity"
+          className="w-full px-8 py-4 rounded-xl bg-purple-600 text-white font-medium hover:bg-purple-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
         >
           Send Message
         </button>

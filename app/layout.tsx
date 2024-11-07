@@ -11,6 +11,15 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Cognitoo - Enterprise Software Solutions & Developer Community",
   description: "High-performance, customizable software solutions for enterprises and educational resources for developers",
+  icons: {
+    icon: "/cognitoofavicon.png",
+    shortcut: "/cognitoofavicon.png",
+    apple: "/cognitoofavicon.png",
+    other: {
+      rel: "apple-touch-icon-precomposed",
+      url: "/cognitoofavicon.png",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -20,6 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/cognitoofavicon.png" />
+      </head>
       <body className={`${plusJakarta.variable} font-plus-jakarta antialiased`}>
         <SmoothScroll />
         {children}

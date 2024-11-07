@@ -5,7 +5,7 @@ type GradientTextProps = {
 
 export function GradientText({ children, className = "" }: GradientTextProps) {
   return (
-    <span className={`bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent ${className}`}>
+    <span className={`text-purple-600 ${className}`}>
       {children}
     </span>
   );

@@ -5,12 +5,12 @@ type BadgeProps = {
 
 export function Badge({ children, className = "" }: BadgeProps) {
   return (
-    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200/80 bg-white/80 backdrop-blur-xl shadow-lg ${className}`}>
-      <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-      <span className="text-[11px] font-medium text-gray-900">
+    <div className={`inline-flex items-center gap-3 px-5 py-2 rounded-full border border-purple-200 bg-purple-50/50 backdrop-blur-xl shadow-sm ${className}`}>
+      <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" />
+      <span className="text-[11px] font-medium text-purple-900 tracking-wider uppercase">
         {children}
       </span>
-      <div className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+      <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" />
     </div>
   );
 } 

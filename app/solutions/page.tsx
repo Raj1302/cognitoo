@@ -1,16 +1,12 @@
-import Link from "next/link";
 import { Suspense } from "react";
-import { SolutionsHeader } from "../components/solutions/SolutionsHeader";
-import { SolutionsGrid } from "../components/solutions/SolutionsGrid";
 import Background from "../components/Background";
 import Navbar from "../components/Navbar";
 import { LoadingSpinner } from "../components/ui/LoadingSpinner";
-
-// Process section component - Moved to separate component
+import { SolutionsHeader } from "../components/solutions/SolutionsHeader";
+import { SolutionsGrid } from "../components/solutions/SolutionsGrid";
 import { ProcessSection } from "../components/solutions/ProcessSection";
-
-// CTA section component - Moved to separate component
 import { CTASection } from "../components/solutions/CTASection";
+import { Footer } from "../components/Footer";
 
 // Loading component for sections
 function SectionLoading() {
@@ -21,7 +17,6 @@ function SectionLoading() {
   );
 }
 
-// Main page component with optimizations
 export default async function SolutionsPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -45,6 +40,8 @@ export default async function SolutionsPage() {
           <CTASection />
         </Suspense>
       </main>
+
+      <Footer />
     </div>
   );
 }

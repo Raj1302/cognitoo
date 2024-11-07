@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { type ReactNode } from "react";
 import { usePathname } from 'next/navigation';
+import Image from "next/image";
 
 const NavLink = ({ 
   href, 
@@ -20,7 +21,7 @@ const NavLink = ({
   <div className="relative group">
     <Link 
       href={isComingSoon ? "#" : href} 
-      className={`text-[11px] font-medium ${isActive ? 'text-gray-900' : 'text-gray-600'} hover:text-gray-900 transition-all duration-300 ${isComingSoon ? 'cursor-not-allowed' : ''}`}
+      className={`text-[11px] font-medium ${isActive ? 'text-purple-600' : 'text-gray-600'} hover:text-purple-600 transition-all duration-300 ${isComingSoon ? 'cursor-not-allowed' : ''}`}
       onClick={(e) => {
         if (isComingSoon) e.preventDefault();
         onClick?.();
@@ -31,7 +32,7 @@ const NavLink = ({
     {isComingSoon && (
       <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-lg" />
+          <div className="absolute inset-0 bg-purple-500/20 rounded-full blur-lg" />
           <div className="relative px-3 py-1 text-[11px] font-medium text-gray-900 bg-white/90 rounded-full border border-purple-500/20 backdrop-blur-xl whitespace-nowrap transform translate-y-1 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
             Coming Soon
           </div>
@@ -101,13 +102,18 @@ export default function Navbar() {
               <NavLink href="/solutions" isActive={pathname === "/solutions"}>Solutions</NavLink>
             </div>
 
-            {/* Logo */}
+            {/* Updated Logo */}
             <Link 
               href="/" 
-              className="text-base sm:text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-all duration-300 relative group"
+              className="relative group flex items-center"
             >
-              COGNITOO
-              <span className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out transform scale-x-0 group-hover:scale-x-100" />
+              <Image 
+                src="/cognitoologo.png" 
+                alt="Cognitoo Logo" 
+                width={120} 
+                height={30} 
+                className="hover:opacity-80 transition-opacity"
+              />
             </Link>
 
             {/* Desktop Navigation */}
