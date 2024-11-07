@@ -46,17 +46,14 @@ const Card = ({
     <Link href={href} className={`block h-full ${isComingSoon ? 'pointer-events-none' : ''}`}>
       <div className="relative h-full flex flex-col items-center justify-center p-4 sm:p-6 z-10">
         <div className="w-full max-w-sm">
-          <div className="relative backdrop-blur-xl bg-black/60 border border-white/10 p-4 sm:p-6 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.37)] transition-colors hover:bg-black/70">
+          <div className="relative backdrop-blur-xl bg-white/80 border border-gray-200/80 p-4 sm:p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:bg-white/90">
             {isComingSoon && (
               <>
-                {/* Increased blur for card content */}
-                <div className="absolute inset-0 backdrop-blur-[3px] bg-black/40 rounded-xl z-10" />
-                {/* Enhanced Coming Soon Badge */}
-                <div className="absolute -top-3 -right-2 z-20">
+                <div className="absolute inset-0 backdrop-blur-[1px] bg-white/40 rounded-xl z-10" />
+                <div className="absolute inset-0 flex items-center justify-center z-20">
                   <div className="relative">
-                    {/* Glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-lg" />
-                    <div className="relative px-4 py-1.5 text-[10px] tracking-[0.2em] text-white/90 bg-black/60 rounded-full border border-purple-500/20 uppercase backdrop-blur-xl">
+                    <div className="relative px-4 py-1.5 text-[11px] font-medium text-gray-900 bg-white/90 rounded-full border border-purple-500/20 uppercase backdrop-blur-xl">
                       <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
                         Coming Soon
@@ -71,9 +68,8 @@ const Card = ({
             {openForProjects && (
               <div className="absolute -top-3 -right-2 z-20">
                 <div className="relative">
-                  {/* Glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full blur-lg" />
-                  <div className="relative px-4 py-1.5 text-[10px] tracking-[0.2em] text-white/90 bg-black/60 rounded-full border border-emerald-500/20 uppercase backdrop-blur-xl">
+                  <div className="relative px-4 py-1.5 text-[11px] font-medium text-gray-900 bg-white/90 rounded-full border border-emerald-500/20 uppercase backdrop-blur-xl">
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                       Open for Projects
@@ -86,56 +82,72 @@ const Card = ({
             
             <div className={`relative ${isComingSoon ? 'opacity-40' : ''}`}>
               <div className="relative">
-                <div className="mb-3 sm:mb-4 flex items-center gap-3 sm:gap-4">
-                  <div className={`w-7 h-7 sm:w-10 sm:h-10 text-${color}-400 shrink-0`}>{icon}</div>
-                  <h2 className="text-lg sm:text-2xl font-bold tracking-[0.1em] uppercase">
+                <div className="mb-4 sm:mb-5 flex items-center gap-4">
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 ${
+                    color === 'blue' ? 'text-blue-600' : 'text-purple-600'
+                  } shrink-0`}>{icon}</div>
+                  <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
                     {title}
                   </h2>
                 </div>
-                <p className="text-sm text-white/70 mb-4 sm:mb-6 tracking-wide leading-relaxed">
+                <p className="text-[15px] text-gray-600 mb-5 sm:mb-6 leading-relaxed">
                   {description}
                 </p>
 
                 {showClients && (
                   <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-3">
                       <div className="flex -space-x-2">
-                        {clientAvatars.map((_, index) => (
+                        {clientAvatars.map((avatar, index) => (
                           <div
                             key={index}
-                            className="w-6 h-6 rounded-full border-2 border-black/60 bg-gradient-to-br from-blue-400/20 to-purple-400/20 backdrop-blur-sm"
-                          />
+                            className="w-6 h-6 rounded-full border-2 border-white relative"
+                          >
+                            <img 
+                              src={avatar} 
+                              alt={`Client ${index + 1}`}
+                              className="w-full h-full rounded-full object-cover"
+                            />
+                          </div>
                         ))}
                       </div>
-                      <span className="text-[10px] tracking-[0.15em] text-white/50 uppercase">
+                      <span className="text-[11px] font-medium text-gray-500">
                         Trusted by many
                       </span>
                     </div>
-                    <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-4" />
                   </div>
                 )}
 
                 {showCommunity && (
                   <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-3">
                       <div className="flex -space-x-2">
-                        {communityStats.map((_, index) => (
+                        {communityStats.map((avatar, index) => (
                           <div
                             key={index}
-                            className="w-6 h-6 rounded-full border-2 border-black/60 bg-gradient-to-br from-purple-400/20 to-pink-400/20 backdrop-blur-sm"
-                          />
+                            className="w-6 h-6 rounded-full border-2 border-white relative"
+                          >
+                            <img 
+                              src={avatar} 
+                              alt={`Member ${index + 1}`}
+                              className="w-full h-full rounded-full object-cover"
+                            />
+                          </div>
                         ))}
                       </div>
-                      <span className="text-[10px] tracking-[0.15em] text-white/50 uppercase">
+                      <span className="text-[11px] font-medium text-gray-500">
                         Join 5k+ Members
                       </span>
                     </div>
-                    <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-4" />
                   </div>
                 )}
 
-                <div className={`inline-flex items-center text-${color}-400 group-hover:text-${color}-300 transition-colors`}>
-                  <span className="mr-2 tracking-[0.2em] uppercase text-xs">{ctaText}</span>
+                <div className={`inline-flex items-center ${
+                  color === 'blue' ? 'text-blue-600 group-hover:text-blue-700' : 'text-purple-600 group-hover:text-purple-700'
+                } transition-colors`}>
+                  <span className="text-[11px] font-medium mr-2">{ctaText}</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -143,11 +155,11 @@ const Card = ({
               </div>
             </div>
           </div>
-          <div className={`flex flex-wrap gap-1.5 sm:gap-2 mt-3 sm:mt-4 justify-center ${isComingSoon ? 'opacity-40 pointer-events-none' : ''}`}>
+          <div className={`flex flex-wrap gap-2 mt-4 justify-center ${isComingSoon ? 'opacity-40 pointer-events-none' : ''}`}>
             {tags.map((tag) => (
               <span 
                 key={tag} 
-                className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] tracking-[0.15em] text-white/70 backdrop-blur-md bg-black/50 rounded-full border border-white/10 uppercase"
+                className="px-3 py-1 text-[11px] font-medium text-gray-600 backdrop-blur-md bg-white/80 rounded-full border border-gray-200/80"
               >
                 {tag}
               </span>
