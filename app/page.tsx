@@ -277,7 +277,15 @@ function Footer() {
   );
 }
 
-export default function Home() {
+// Simulate loading delay
+async function getData() {
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // 2 second delay
+  return {};
+}
+
+export default async function Home() {
+  await getData(); // This will trigger the loading state
+
   return (
     <div className="min-h-screen bg-white flex flex-col relative overflow-hidden">
       <Background />
