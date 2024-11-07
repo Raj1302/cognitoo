@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Orbitron } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const orbitron = Orbitron({ 
+const plusJakarta = Plus_Jakarta_Sans({ 
   subsets: ["latin"],
-  variable: "--font-orbitron",
+  variable: "--font-plus-jakarta",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${orbitron.variable} font-orbitron antialiased`}>
+      <body className={`${plusJakarta.variable} font-plus-jakarta antialiased`}>
         {children}
       </body>
     </html>

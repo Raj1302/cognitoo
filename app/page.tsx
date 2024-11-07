@@ -297,10 +297,10 @@ export default function Home() {
 
 // Constants
 const solutions = [
+  "Web Development",
+  "Branding & Design",
   "School Management",
-  "Hospital Management",
-  "HR Software",
-  "Restaurant Management"
+  "Hospital Management"
 ] as const;
 
 const communityFeatures = [
