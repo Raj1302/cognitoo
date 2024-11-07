@@ -37,27 +37,27 @@ export function Footer() {
     <footer className="relative z-10 mt-20">
       {/* Main Footer */}
       <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/80">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 py-16">
+        <div className="max-w-6xl mx-auto px-4 py-8 sm:py-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12">
             {/* Brand Column */}
-            <div className="md:col-span-4 space-y-8">
+            <div className="sm:col-span-2 lg:col-span-4 space-y-6">
               <div className="space-y-4">
                 <Image 
                   src="/cognitoologo.png" 
                   alt="Cognitoo Logo" 
                   width={120} 
                   height={30}
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity mx-auto sm:mx-0"
                 />
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-gray-600 leading-relaxed text-center sm:text-left">
                   Empowering businesses with innovative technology solutions that drive growth and success.
                 </p>
               </div>
 
               {/* Social Links */}
               <div className="space-y-4">
-                <h4 className="text-sm font-semibold text-gray-900">Connect With Us</h4>
-                <div className="flex gap-4">
+                <h4 className="text-sm font-semibold text-gray-900 text-center sm:text-left">Connect With Us</h4>
+                <div className="flex gap-4 justify-center sm:justify-start">
                   {[
                     {
                       name: 'LinkedIn',
@@ -101,9 +101,9 @@ export function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div className="md:col-span-2">
-              <h3 className="text-sm font-semibold text-gray-900 mb-4">Quick Links</h3>
-              <ul className="space-y-3">
+            <div className="sm:col-span-1 lg:col-span-2">
+              <h3 className="text-sm font-semibold text-gray-900 mb-4 text-center sm:text-left">Quick Links</h3>
+              <ul className="space-y-3 flex flex-col items-center sm:items-start">
                 {[
                   { label: 'About', href: '/about' },
                   { label: 'Solutions', href: '/solutions' },
@@ -120,9 +120,9 @@ export function Footer() {
             </div>
 
             {/* Solutions */}
-            <div className="md:col-span-3">
-              <h3 className="text-sm font-semibold text-gray-900 mb-4">Solutions</h3>
-              <ul className="space-y-3">
+            <div className="sm:col-span-1 lg:col-span-3">
+              <h3 className="text-sm font-semibold text-gray-900 mb-4 text-center sm:text-left">Solutions</h3>
+              <ul className="space-y-3 flex flex-col items-center sm:items-start">
                 {[
                   'Web Development',
                   'Branding & Design',
@@ -139,9 +139,9 @@ export function Footer() {
             </div>
 
             {/* Contact Info */}
-            <div className="md:col-span-3">
-              <h3 className="text-sm font-semibold text-gray-900 mb-4">Contact</h3>
-              <ul className="space-y-3">
+            <div className="sm:col-span-2 lg:col-span-3">
+              <h3 className="text-sm font-semibold text-gray-900 mb-4 text-center sm:text-left">Contact</h3>
+              <ul className="space-y-3 flex flex-col items-center sm:items-start">
                 <li>
                   <a 
                     href="mailto:hello@cognitoo.com" 
@@ -180,7 +180,7 @@ export function Footer() {
       <div className="bg-gray-50/80 backdrop-blur-xl border-t border-gray-200/80">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 text-center sm:text-left">
               © 2024 Cognitoo. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
