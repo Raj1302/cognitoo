@@ -29,10 +29,10 @@ const NavLink = ({
       {children}
     </Link>
     {isComingSoon && (
-      <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-lg" />
-          <div className="relative px-3 py-1 text-[11px] font-medium text-gray-900 bg-white/80 rounded-full border border-purple-500/20 backdrop-blur-xl whitespace-nowrap">
+          <div className="relative px-3 py-1 text-[11px] font-medium text-gray-900 bg-white/90 rounded-full border border-purple-500/20 backdrop-blur-xl whitespace-nowrap transform translate-y-1 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
             Coming Soon
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function Navbar() {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -59,9 +59,22 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'}`}>
+    <header className="fixed top-6 left-0 right-0 z-50">
       <div className="max-w-[600px] mx-auto px-4">
-        <div className={`relative backdrop-blur-xl bg-white/60 rounded-xl border border-gray-200 shadow-lg transition-all duration-300 ${scrolled ? 'shadow-lg' : ''}`}>
+        <div className={`
+          relative 
+          backdrop-blur-xl 
+          bg-white/60 
+          rounded-xl 
+          border 
+          border-gray-200 
+          shadow-lg 
+          transition-all 
+          duration-500 
+          ease-in-out
+          transform
+          ${scrolled ? 'translate-y-[-8px]' : 'translate-y-0'}
+        `}>
           <div className="absolute top-0 left-4 right-4 h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
           <nav className="flex items-center justify-between px-4 sm:px-6 py-3 relative">
@@ -71,14 +84,14 @@ export default function Navbar() {
               className="sm:hidden relative w-6 h-6 text-gray-600 hover:text-gray-900 transition-colors"
               aria-label="Toggle menu"
             >
-              <div className={`absolute inset-0 flex flex-col justify-center items-center transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}>
-                <span className="w-5 h-0.5 bg-current mb-1" />
-                <span className="w-5 h-0.5 bg-current" />
-                <span className="w-5 h-0.5 bg-current mt-1" />
+              <div className={`absolute inset-0 flex flex-col justify-center items-center transition-all duration-300 ease-in-out ${isOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'}`}>
+                <span className="w-5 h-0.5 bg-current mb-1 transform transition-transform duration-300 ease-in-out" />
+                <span className="w-5 h-0.5 bg-current transition-opacity duration-300 ease-in-out" />
+                <span className="w-5 h-0.5 bg-current mt-1 transform transition-transform duration-300 ease-in-out" />
               </div>
-              <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${isOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'}`}>
-                <span className="w-5 h-0.5 bg-current rotate-45 absolute" />
-                <span className="w-5 h-0.5 bg-current -rotate-45 absolute" />
+              <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'}`}>
+                <span className="w-5 h-0.5 bg-current rotate-45 absolute transition-transform duration-300 ease-in-out" />
+                <span className="w-5 h-0.5 bg-current -rotate-45 absolute transition-transform duration-300 ease-in-out" />
               </div>
             </button>
 
@@ -94,7 +107,7 @@ export default function Navbar() {
               className="text-base sm:text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-all duration-300 relative group"
             >
               COGNITOO
-              <span className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out transform scale-x-0 group-hover:scale-x-100" />
             </Link>
 
             {/* Desktop Navigation */}
@@ -126,7 +139,7 @@ export default function Navbar() {
               ${isOpen ? 'max-h-[250px] opacity-100' : 'max-h-0 opacity-0'}
             `}
           >
-            <div className="p-4 mt-2 mx-4 mb-4 space-y-6 flex flex-col items-center backdrop-blur-xl bg-white/60 rounded-xl border border-gray-200">
+            <div className="p-4 mt-2 mx-4 mb-4 space-y-6 flex flex-col items-center backdrop-blur-xl bg-white/60 rounded-xl border border-gray-200 transform transition-transform duration-500 ease-in-out">
               <NavLink href="/about" onClick={closeMenu} isActive={pathname === "/about"}>About</NavLink>
               <NavLink href="/solutions" onClick={closeMenu} isActive={pathname === "/solutions"}>Solutions</NavLink>
               <NavLink 
