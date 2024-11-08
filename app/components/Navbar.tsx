@@ -4,6 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
+type NavLink = {
+  name: string;
+  href: string;
+  disabled?: boolean;
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -41,7 +47,7 @@ export default function Navbar() {
     }, 300);
   };
 
-  const links = [
+  const links: NavLink[] = [
     { name: 'Home', href: '/' },
     { name: 'Solutions', href: '/solutions' },
     { name: 'About', href: '/about' },
