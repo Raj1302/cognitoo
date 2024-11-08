@@ -24,12 +24,12 @@ export function SolutionCard({
         href={isComingSoon ? "#" : href}
         className={`block ${isComingSoon ? 'cursor-not-allowed' : ''}`}
       >
-        <div className="h-full backdrop-blur-xl bg-white/80 border border-gray-200/80 p-8 rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl hover:bg-white/90 group-hover:-translate-y-1">
+        <div className="h-full card-blur p-8 transition-all duration-500 hover:shadow-xl hover:bg-white/90 group-hover:-translate-y-1">
           {isComingSoon && (
             <>
-              <div className="absolute inset-0 backdrop-blur-[1px] bg-white/40 rounded-2xl z-10" />
+              <div className="absolute inset-0 bg-white/60 rounded-2xl z-10" />
               <div className="absolute -top-3 -right-3 z-20">
-                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-purple-200 bg-purple-50/50 backdrop-blur-xl shadow-sm">
+                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-purple-50 border border-purple-200 shadow-sm">
                   <div className="w-1 h-1 rounded-full bg-purple-500 animate-pulse" />
                   <span className="text-[11px] font-medium text-purple-900 tracking-wider uppercase">
                     Coming Soon
@@ -40,7 +40,7 @@ export function SolutionCard({
             </>
           )}
 
-          <div className={`${isComingSoon ? 'opacity-50' : ''}`}>
+          <div className={`relative z-20 ${isComingSoon ? 'opacity-50' : ''}`}>
             {/* Icon and Title Section */}
             <div className="flex items-start gap-5 mb-8">
               <div className="text-purple-600 p-4 bg-purple-500/5 rounded-xl shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[10deg]">
@@ -67,7 +67,7 @@ export function SolutionCard({
                 {features.map((feature) => (
                   <span 
                     key={feature}
-                    className="px-4 py-1.5 text-[11px] font-medium text-gray-600 backdrop-blur-md bg-white/80 rounded-full border border-gray-200/80 transition-colors duration-300 hover:text-purple-600 hover:border-purple-200"
+                    className="px-4 py-1.5 text-[11px] font-medium text-gray-600 bg-white/80 rounded-full border border-gray-200/80 transition-colors duration-300 hover:text-purple-600 hover:border-purple-200"
                   >
                     {feature}
                   </span>

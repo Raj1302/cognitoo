@@ -36,7 +36,7 @@ export function Footer() {
   return (
     <footer className="relative z-10 mt-20">
       {/* Main Footer */}
-      <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/80">
+      <div className="bg-white/90 border-t border-gray-200/80">
         <div className="max-w-6xl mx-auto px-4 py-8 sm:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12">
             {/* Brand Column */}

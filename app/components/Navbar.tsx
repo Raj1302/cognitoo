@@ -64,8 +64,8 @@ export default function Navbar() {
       <div className="max-w-[600px] mx-auto px-4">
         <div className={`
           relative 
-          backdrop-blur-xl 
-          bg-white/60 
+          backdrop-blur-sm 
+          bg-white/80 
           rounded-xl 
           border 
           border-gray-200 

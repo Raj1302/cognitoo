@@ -4,22 +4,34 @@ import Lenis from "@studio-freight/lenis";
 
 export function SmoothScroll() {
   useEffect(() => {
+    // Check if device is mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // Don't initialize Lenis on mobile devices
+    if (isMobile) return;
+
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false,
+      duration: 0.6, // Reduced from 0.8
+      easing: (t) => 1 - Math.pow(1 - t, 5), // Using a simpler easing function
+      orientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.5, // Reduced from 0.8
+      touchMultiplier: 1, // Reduced from 1.5
     });
 
+    let rafId: number;
+    
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    // Start the animation frame
+    rafId = requestAnimationFrame(raf);
 
+    // Cleanup function
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
