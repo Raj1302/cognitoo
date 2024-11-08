@@ -10,15 +10,8 @@ const nextConfig = {
   },
   images: {
     domains: ['localhost'],
-    unoptimized: false,
-    minimumCacheTTL: 60,
+    unoptimized: true,
   },
-  experimental: {
-    optimizeCss: true,
-    scrollRestoration: true,
-    optimizePackageImports: ['@studio-freight/lenis'],
-  },
-  // Add performance hints
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       Object.assign(config, {
