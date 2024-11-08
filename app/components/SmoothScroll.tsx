@@ -11,12 +11,12 @@ export function SmoothScroll() {
     if (isMobile) return;
 
     const lenis = new Lenis({
-      duration: 0.6, // Reduced from 0.8
+      duration: 0.8, 
       easing: (t) => 1 - Math.pow(1 - t, 5), // Using a simpler easing function
       orientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.5, // Reduced from 0.8
-      touchMultiplier: 1, // Reduced from 1.5
+      wheelMultiplier: 0.9, 
+      touchMultiplier: 1.5, 
     });
 
     let rafId: number;

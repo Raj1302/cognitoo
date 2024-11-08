@@ -1,50 +1,13 @@
 "use client";
-import Link from "next/link";
 import { useState, useEffect } from "react";
-import { type ReactNode } from "react";
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
-
-const NavLink = ({ 
-  href, 
-  children, 
-  onClick, 
-  isActive = false,
-  isComingSoon = false 
-}: { 
-  href: string; 
-  children: ReactNode; 
-  onClick?: () => void;
-  isActive?: boolean;
-  isComingSoon?: boolean;
-}) => (
-  <div className="relative group">
-    <Link 
-      href={isComingSoon ? "#" : href} 
-      className={`text-[11px] font-medium ${isActive ? 'text-purple-600' : 'text-gray-600'} hover:text-purple-600 transition-all duration-300 ${isComingSoon ? 'cursor-not-allowed' : ''}`}
-      onClick={(e) => {
-        if (isComingSoon) e.preventDefault();
-        onClick?.();
-      }}
-    >
-      {children}
-    </Link>
-    {isComingSoon && (
-      <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-        <div className="relative">
-          <div className="absolute inset-0 bg-purple-500/20 rounded-full blur-lg" />
-          <div className="relative px-3 py-1 text-[11px] font-medium text-gray-900 bg-white/90 rounded-full border border-purple-500/20 backdrop-blur-xl whitespace-nowrap transform translate-y-1 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
-            Coming Soon
-          </div>
-        </div>
-      </div>
-    )}
-  </div>
-);
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -56,12 +19,39 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const toggleMenu = () => {
+    if (isOpen) {
+      // Start closing animation
+      setIsClosing(true);
+      // Wait for animation to complete before hiding menu
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsClosing(false);
+      }, 300);
+    } else {
+      setIsOpen(true);
+    }
+  };
+
+  const closeMenu = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+    }, 300);
+  };
+
+  const links = [
+    { name: 'Home', href: '/' },
+    { name: 'Solutions', href: '/solutions' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Button Library', href: '/library' },
+  ];
 
   return (
     <header className="fixed top-6 left-0 right-0 z-50">
-      <div className="max-w-[600px] mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <div className={`
           relative 
           backdrop-blur-sm 
@@ -79,86 +69,103 @@ export default function Navbar() {
           <div className="absolute top-0 left-4 right-4 h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
           <nav className="flex items-center justify-between px-4 sm:px-6 py-3 relative">
-            {/* Mobile Menu Button */}
-            <button 
-              onClick={toggleMenu}
-              className="sm:hidden relative w-6 h-6 text-gray-600 hover:text-gray-900 transition-colors"
-              aria-label="Toggle menu"
-            >
-              <div className={`absolute inset-0 flex flex-col justify-center items-center transition-all duration-300 ease-in-out ${isOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'}`}>
-                <span className="w-5 h-0.5 bg-current mb-1 transform transition-transform duration-300 ease-in-out" />
-                <span className="w-5 h-0.5 bg-current transition-opacity duration-300 ease-in-out" />
-                <span className="w-5 h-0.5 bg-current mt-1 transform transition-transform duration-300 ease-in-out" />
-              </div>
-              <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-180'}`}>
-                <span className="w-5 h-0.5 bg-current rotate-45 absolute transition-transform duration-300 ease-in-out" />
-                <span className="w-5 h-0.5 bg-current -rotate-45 absolute transition-transform duration-300 ease-in-out" />
-              </div>
-            </button>
-
-            {/* Desktop Navigation */}
-            <div className="hidden sm:flex items-center gap-8 w-[120px]">
-              <NavLink href="/about" isActive={pathname === "/about"}>About</NavLink>
-              <NavLink href="/solutions" isActive={pathname === "/solutions"}>Solutions</NavLink>
-            </div>
-
-            {/* Updated Logo */}
-            <Link 
-              href="/" 
-              className="relative group flex items-center"
-            >
+            {/* Logo */}
+            <Link href="/" className="shrink-0">
               <Image 
                 src="/cognitoologo.png" 
                 alt="Cognitoo Logo" 
                 width={120} 
-                height={30} 
+                height={30}
                 className="hover:opacity-80 transition-opacity"
               />
             </Link>
 
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={toggleMenu}
+              className="sm:hidden p-2 text-gray-600 hover:text-purple-600 transition-colors"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              <div className="w-6 h-6 relative">
+                <span className={`
+                  absolute left-0 top-1/2 w-6 h-0.5 bg-current transform 
+                  transition-all duration-300 ease-in-out
+                  ${isOpen ? 'rotate-45 translate-y-0' : '-translate-y-1'}
+                `} />
+                <span className={`
+                  absolute left-0 top-1/2 w-6 h-0.5 bg-current
+                  transition-all duration-300 ease-in-out
+                  ${isOpen ? 'opacity-0' : 'opacity-100'}
+                `} />
+                <span className={`
+                  absolute left-0 top-1/2 w-6 h-0.5 bg-current transform
+                  transition-all duration-300 ease-in-out
+                  ${isOpen ? '-rotate-45 translate-y-0' : 'translate-y-1'}
+                `} />
+              </div>
+            </button>
+
             {/* Desktop Navigation */}
-            <div className="hidden sm:flex items-center gap-8 w-[120px] justify-end">
-              <NavLink 
-                href="/community" 
-                isActive={pathname === "/community"}
-                isComingSoon={true}
-              >
-                Community
-              </NavLink>
-              <NavLink href="/contact" isActive={pathname === "/contact"}>Contact</NavLink>
+            <div className="hidden sm:flex items-center gap-1">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`
+                    relative px-4 py-2 rounded-lg text-sm font-medium
+                    transition-all duration-200
+                    ${link.disabled ? 'cursor-not-allowed' : ''}
+                    ${pathname === link.href 
+                      ? 'text-purple-600 bg-purple-50' 
+                      : 'text-gray-600 hover:text-purple-600 hover:bg-gray-50'
+                    }
+                  `}
+                  onClick={link.disabled ? (e) => e.preventDefault() : undefined}
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
 
-            {/* Placeholder for mobile menu button alignment */}
-            <div className="w-6 sm:hidden"></div>
+            {/* Mobile Navigation */}
+            {(isOpen || isClosing) && (
+              <div 
+                className={`
+                  absolute top-full left-0 right-0 mt-2 p-2 
+                  bg-white rounded-xl border border-gray-200 shadow-lg sm:hidden
+                  transform transition-all duration-300 ease-in-out origin-top
+                  ${isClosing ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
+                `}
+              >
+                {links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      if (link.disabled) {
+                        e.preventDefault();
+                      } else {
+                        closeMenu();
+                      }
+                    }}
+                    className={`
+                      relative block px-4 py-2 rounded-lg text-sm font-medium
+                      transition-colors duration-200
+                      ${link.disabled ? 'cursor-not-allowed' : ''}
+                      ${pathname === link.href 
+                        ? 'text-purple-600 bg-purple-50' 
+                        : 'text-gray-600 hover:text-purple-600 hover:bg-gray-50'
+                      }
+                    `}
+                  >
+                    <div className="flex items-center justify-between">
+                      {link.name}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </nav>
-
-          <div className="absolute bottom-0 left-4 right-4 h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-
-          {/* Mobile Menu */}
-          <div 
-            className={`
-              sm:hidden 
-              overflow-hidden 
-              transition-all 
-              duration-500 
-              ease-in-out
-              ${isOpen ? 'max-h-[250px] opacity-100' : 'max-h-0 opacity-0'}
-            `}
-          >
-            <div className="p-4 mt-2 mx-4 mb-4 space-y-6 flex flex-col items-center backdrop-blur-xl bg-white/60 rounded-xl border border-gray-200 transform transition-transform duration-500 ease-in-out">
-              <NavLink href="/about" onClick={closeMenu} isActive={pathname === "/about"}>About</NavLink>
-              <NavLink href="/solutions" onClick={closeMenu} isActive={pathname === "/solutions"}>Solutions</NavLink>
-              <NavLink 
-                href="/community" 
-                onClick={closeMenu} 
-                isActive={pathname === "/community"}
-                isComingSoon={true}
-              >
-                Community
-              </NavLink>
-              <NavLink href="/contact" onClick={closeMenu} isActive={pathname === "/contact"}>Contact</NavLink>
-            </div>
-          </div>
         </div>
       </div>
     </header>

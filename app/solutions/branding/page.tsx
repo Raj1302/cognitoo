@@ -4,129 +4,99 @@ import Background from "@/app/components/Background";
 import { Badge } from "@/app/components/Badge";
 import { Footer } from "@/app/components/Footer";
 
-const technologies = [
-  {
-    category: "Frontend",
-    techs: [
-      { name: "React", level: "Expert" },
-      { name: "Next.js", level: "Expert" },
-      { name: "TypeScript", level: "Expert" },
-      { name: "Tailwind CSS", level: "Expert" },
-    ]
-  },
-  {
-    category: "Backend",
-    techs: [
-      { name: "Node.js", level: "Expert" },
-      { name: "Python", level: "Expert" },
-      { name: "PostgreSQL", level: "Expert" },
-      { name: "MongoDB", level: "Expert" },
-    ]
-  },
-  {
-    category: "DevOps",
-    techs: [
-      { name: "Docker", level: "Expert" },
-      { name: "AWS", level: "Expert" },
-      { name: "CI/CD", level: "Expert" },
-      { name: "Git", level: "Expert" },
-    ]
-  }
-];
-
 const services = [
   {
-    title: "Custom Web Applications",
-    description: "Tailored web solutions that perfectly match your business needs and scale with your growth",
+    title: "Brand Identity Design",
+    description: "Create a unique and memorable brand identity that resonates with your target audience",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
       </svg>
     ),
     features: [
-      "Scalable Architecture",
-      "Responsive Design",
-      "Performance Optimized",
-      "SEO Friendly"
+      "Logo Design",
+      "Color Palette",
+      "Typography",
+      "Brand Guidelines"
     ]
   },
   {
-    title: "E-commerce Solutions",
-    description: "Full-featured online stores with advanced features and seamless payment integrations",
+    title: "Marketing Materials",
+    description: "Professional design for all your marketing and promotional materials",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
       </svg>
     ),
     features: [
-      "Payment Gateway Integration",
-      "Inventory Management",
-      "Order Processing",
-      "Analytics Dashboard"
+      "Business Cards",
+      "Brochures",
+      "Banners",
+      "Social Media Kit"
     ]
   },
   {
-    title: "Progressive Web Apps",
-    description: "Next-generation mobile-first applications with offline capabilities and native-like experience",
+    title: "UI/UX Design",
+    description: "User-centered design solutions that enhance digital experiences",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
       </svg>
     ),
     features: [
-      "Offline Support",
-      "Push Notifications",
-      "App-like Experience",
-      "Cross-platform"
+      "Wireframing",
+      "Prototyping",
+      "User Research",
+      "Interface Design"
     ]
   },
   {
-    title: "API Development",
-    description: "Robust and scalable APIs that power your applications with high performance and security",
+    title: "Print Design",
+    description: "High-quality print designs that make a lasting impression",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
       </svg>
     ),
     features: [
-      "RESTful APIs",
-      "GraphQL",
-      "Authentication",
-      "Documentation"
+      "Packaging Design",
+      "Catalogs",
+      "Posters",
+      "Merchandise"
     ]
   }
 ];
 
 const reviews = [
   {
-    name: "John Smith",
-    role: "CTO, TechCorp",
-    company: "Enterprise E-commerce Platform",
-    review: "Cognitoo delivered an exceptional e-commerce solution that exceeded our expectations. Their attention to detail and technical expertise helped us achieve a 40% increase in sales conversion.",
+    name: "Emily Thompson",
+    role: "Marketing Director, BrandCo",
+    company: "Brand Identity Redesign",
+    review: "Cognitoo transformed our brand identity completely. The new design perfectly captures our company's values and has significantly improved our market presence.",
     metrics: [
-      { value: "40%", label: "Sales Increase" },
-      { value: "2x", label: "Faster Loading" },
-      { value: "99.9%", label: "Uptime" },
-      { value: "50K+", label: "Daily Users" }
+      { value: "85%", label: "Brand Recognition" },
+      { value: "3x", label: "Social Engagement" },
+      { value: "95%", label: "Client Satisfaction" },
+      { value: "40%", label: "Revenue Growth" }
     ],
-    tech: ["Next.js", "Node.js", "PostgreSQL", "AWS"]
+    deliverables: ["Logo Suite", "Brand Guidelines", "Marketing Materials", "Digital Assets"]
   },
   {
-    name: "Sarah Johnson",
-    role: "Product Manager, DataFlow",
-    company: "Analytics Dashboard",
-    review: "The team's expertise in building complex data visualization tools is remarkable. They transformed our vision into a powerful, user-friendly dashboard that our clients love.",
+    name: "Michael Chen",
+    role: "CEO, TechStart",
+    company: "Complete Brand Package",
+    review: "The team's attention to detail and creative approach helped us establish a strong brand presence from day one. Their work exceeded our expectations.",
     metrics: [
-      { value: "5x", label: "Performance" },
-      { value: "60%", label: "Time Saved" },
-      { value: "10M+", label: "Daily Requests" },
-      { value: "500+", label: "API Endpoints" }
+      { value: "100%", label: "Project Score" },
+      { value: "2x", label: "Website Traffic" },
+      { value: "50K+", label: "Social Reach" },
+      { value: "45%", label: "Conversion Rate" }
     ],
-    tech: ["React", "Python", "MongoDB", "Docker"]
+    deliverables: ["Brand Identity", "UI/UX Design", "Social Media Kit", "Print Materials"]
   }
 ];
 
-export default function WebDevelopmentPage() {
+export default function BrandingPage() {
   return (
     <div className="min-h-screen bg-white">
       <Background />
@@ -136,38 +106,17 @@ export default function WebDevelopmentPage() {
         <div className="max-w-6xl mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-20">
-            <Badge>Web Development</Badge>
+            <Badge>Branding & Design</Badge>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6 mt-8">
-              Enterprise-Grade
+              Transform Your Brand with
               <span className="block mt-2 text-purple-600">
-                Web Development Solutions
+                Creative Design Solutions
               </span>
             </h1>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Leverage our expertise in cutting-edge technologies to build scalable, 
-              high-performance web applications that drive your business forward.
+              We create compelling brand identities and design experiences that 
+              help businesses stand out in today's competitive market.
             </p>
-          </div>
-
-          {/* Technologies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            {technologies.map((tech) => (
-              <div key={tech.category} className="card-blur p-8 hover:-translate-y-1 transition-all duration-500">
-                <h3 className="text-xl font-bold text-purple-600 mb-8">
-                  {tech.category}
-                </h3>
-                <div className="space-y-5">
-                  {tech.techs.map((t) => (
-                    <div key={t.name} className="flex items-center justify-between border-b border-gray-200/80 pb-3">
-                      <span className="text-sm text-gray-600 font-medium">{t.name}</span>
-                      <span className="text-[11px] font-medium tracking-wider text-purple-600 uppercase bg-purple-50 px-3 py-1 rounded-full">
-                        {t.level}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
           </div>
 
           {/* Services Section */}
@@ -176,12 +125,12 @@ export default function WebDevelopmentPage() {
               <Badge>Our Services</Badge>
               <h2 className="text-3xl font-bold mt-8 mb-6">
                 <span className="text-purple-600">
-                  Comprehensive Solutions
+                  Comprehensive Design Solutions
                 </span>
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                From custom web applications to API development, we provide end-to-end solutions 
-                tailored to your business needs.
+                From brand identity to digital design, we provide end-to-end creative 
+                solutions tailored to your brand's needs.
               </p>
             </div>
 
@@ -204,7 +153,7 @@ export default function WebDevelopmentPage() {
 
                   <div className="pt-6 border-t border-gray-200/80">
                     <div className="text-[11px] font-semibold text-gray-400 tracking-wider uppercase mb-3">
-                      Key Features
+                      What's Included
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {service.features.map((feature) => (
@@ -225,14 +174,14 @@ export default function WebDevelopmentPage() {
           {/* Client Reviews */}
           <div className="mb-20">
             <div className="text-center mb-12">
-              <Badge>Testimonials</Badge>
+              <Badge>Success Stories</Badge>
               <h2 className="text-3xl font-bold mt-8 mb-6">
                 <span className="text-purple-600">
-                  Client Reviews
+                  Client Transformations
                 </span>
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                Don't just take our word for it. Here's what our clients have to say about working with us.
+                See how our design solutions have helped businesses transform their brand presence.
               </p>
             </div>
 
@@ -272,18 +221,18 @@ export default function WebDevelopmentPage() {
                     ))}
                   </div>
 
-                  {/* Technologies */}
+                  {/* Deliverables */}
                   <div className="pt-6 border-t border-gray-200/80">
                     <div className="text-[11px] font-semibold text-gray-400 tracking-wider uppercase mb-3">
-                      Technologies Used
+                      Project Deliverables
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {review.tech.map((t) => (
+                      {review.deliverables.map((item) => (
                         <span 
-                          key={t} 
+                          key={item} 
                           className="px-4 py-1.5 text-[11px] font-medium text-purple-600 bg-purple-50 rounded-full border border-purple-100 uppercase tracking-wider"
                         >
-                          {t}
+                          {item}
                         </span>
                       ))}
                     </div>
@@ -299,11 +248,11 @@ export default function WebDevelopmentPage() {
               <Badge>Start Your Project</Badge>
               <h2 className="text-3xl font-bold mt-8 mb-6">
                 <span className="text-purple-600">
-                  Ready to Transform Your Ideas?
+                  Ready to Transform Your Brand?
                 </span>
               </h2>
               <p className="text-gray-600 max-w-xl mx-auto mb-8 text-lg leading-relaxed">
-                Let's discuss your requirements and create something amazing together.
+                Let's create a unique brand identity that sets you apart from the competition.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link 
